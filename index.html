@@ -81,7 +81,7 @@
     display:flex;align-items:center;gap:8px;
   }
   .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
-  .navlinks{display:flex;gap:4px;font-family:var(--mono);font-size:13px;}
+  .navlinks{display:flex;flex-wrap:wrap;row-gap:6px;gap:4px;font-family:var(--mono);font-size:13px;}
   .navlinks a{
     color:var(--text-dim);
     padding:8px 12px;
@@ -279,8 +279,8 @@
   }
 
   /* PROJECTS */
-  .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  @media (max-width:860px){.project-grid{grid-template-columns:1fr;}}
+  .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  @media (max-width:700px){.project-grid{grid-template-columns:1fr;}}
   .project-card{
     background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
     padding:22px;display:flex;flex-direction:column;gap:12px;
@@ -291,6 +291,8 @@
   .project-org{font-family:var(--mono);font-size:11.5px;color:var(--amber);letter-spacing:0.03em;}
   .project-desc{font-size:13.5px;color:var(--text-dim);line-height:1.55;flex:1;}
   .project-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .project-link{font-family:var(--mono);font-size:12.5px;color:var(--accent);align-self:flex-start;}
+  .project-link:hover{text-decoration:underline;}
 
   /* SKILLS */
   .skill-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
@@ -322,9 +324,32 @@
   .stat-num{font-family:var(--mono);font-weight:800;font-size:30px;color:var(--accent);margin-bottom:6px;}
   .stat-label{font-size:13.5px;color:var(--text-dim);}
 
+  /* CERTIFICATIONS */
+  .star-badges{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:16px;}
+  .star-badge{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:16px 20px;flex:1 1 200px;
+  }
+  .star-badge .stars{color:var(--amber);font-size:14px;letter-spacing:2px;margin-bottom:6px;}
+  .star-badge .star-label{font-family:var(--mono);font-size:14px;color:var(--text);font-weight:600;}
+  .star-badge .star-platform{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);letter-spacing:0.04em;margin-top:2px;}
+  .cert-row{display:flex;flex-wrap:wrap;gap:12px;}
+  .cert-card{
+    display:flex;align-items:center;gap:16px;
+    background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:14px 18px;flex:1 1 200px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .cert-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .cert-text{display:flex;flex-direction:column;gap:3px;}
+  .cert-text .cert-platform{font-family:var(--mono);font-size:10.5px;color:var(--amber);letter-spacing:0.04em;}
+  .cert-text .cert-title{font-family:var(--mono);font-size:13.5px;color:var(--text);font-weight:600;}
+  .cert-arrow{margin-left:auto;color:var(--text-faint);font-size:14px;transition:color .15s ease, transform .15s ease;}
+  .cert-card:hover .cert-arrow{color:var(--accent);transform:translate(2px,-2px);}
+
   /* PROFILES */
-  .profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  @media (max-width:760px){.profile-grid{grid-template-columns:1fr;}}
+  .profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  @media (max-width:700px){.profile-grid{grid-template-columns:1fr;}}
   .profile-card{
     background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
     padding:22px;display:block;
@@ -349,6 +374,7 @@
   .edu-item .deg{color:var(--text-dim);font-size:13.5px;margin-top:2px;}
   .edu-item .dates{font-family:var(--mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;}
   .edu-detail{font-size:12.5px;color:var(--text-faint);margin-top:6px;max-width:480px;line-height:1.5;}
+  .edu-detail b{color:var(--text-dim);font-weight:600;}
 
   /* CONTACT */
   .contact-card{
@@ -359,6 +385,29 @@
   .contact-card p{color:var(--text-dim);margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;}
   .contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
   .contact-links + .contact-links{margin-top:12px;}
+
+  /* CONTACT FORM */
+  .contact-form{display:flex;flex-direction:column;gap:12px;text-align:left;margin-bottom:8px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .form-row{display:flex;gap:12px;}
+  .form-row input{flex:1;min-width:0;}
+  @media (max-width:560px){.form-row{flex-direction:column;}}
+  .contact-form input,.contact-form textarea{
+    width:100%;background:var(--bg-alt);border:1px solid var(--border);border-radius:7px;
+    padding:11px 14px;color:var(--text);font-family:var(--sans);font-size:14px;
+    transition:border-color .15s ease;
+  }
+  .contact-form textarea{resize:vertical;min-height:100px;}
+  .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--text-faint);}
+  .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent);}
+  .contact-form button{justify-content:center;cursor:pointer;}
+  .contact-form button:disabled{opacity:0.6;cursor:not-allowed;}
+  .hp-field{position:absolute;left:-9999px;width:0;height:0;opacity:0;}
+  .contact-divider{
+    display:flex;align-items:center;gap:14px;color:var(--text-faint);
+    font-family:var(--mono);font-size:11px;letter-spacing:0.05em;
+    margin:24px auto 20px;max-width:480px;text-transform:uppercase;
+  }
+  .contact-divider::before,.contact-divider::after{content:"";flex:1;height:1px;background:var(--border);}
 
   footer{
     padding:32px 0 48px;text-align:center;
@@ -418,6 +467,7 @@
       <a class="btn btn-ghost" href="#experience">See experience ↓</a>
     </div>
     <div class="social-row">
+      <a class="social-pill" href="https://www.linkedin.com/in/itsrajkumar/" target="_blank" rel="noopener">↗ LinkedIn</a>
       <a class="social-pill" href="https://github.com/itsyadavRajkumar" target="_blank" rel="noopener">↗ GitHub</a>
       <a class="social-pill" href="https://leetcode.com/u/NitForge/" target="_blank" rel="noopener">↗ LeetCode</a>
       <a class="social-pill" href="https://www.geeksforgeeks.org/profile/itsrajkumar" target="_blank" rel="noopener">↗ GeeksforGeeks</a>
@@ -538,12 +588,12 @@
     <div class="project-grid reveal">
       <div class="project-card">
         <div class="project-top">
-          <h3>Learning Management & Assessment Platform</h3>
-          <span class="project-org">ByteXL</span>
+          <h3>VibeShares</h3>
+          <span class="project-org">Personal Project</span>
         </div>
-        <p class="project-desc">Designed and developed scalable backend services for an EdTech platform, enabling student learning, assessments, course management, and progress tracking. Built secure RESTful APIs using Spring Boot with optimized database integration, comprehensive unit testing (80%+ coverage), and high code quality through SonarQube.</p>
+        <p class="project-desc">A modular RESTful blog platform with full CRUD on posts, comments, and profiles, secured with JWT authentication and role-based access via Spring Security. Documented with Swagger/OpenAPI, containerized with Docker, and backed by 80%+ JUnit coverage on a SonarQube-clean codebase.</p>
         <div class="project-tags">
-          <span class="badge">Java</span><span class="badge">Spring Boot</span><span class="badge">Spring Security</span><span class="badge">JWT</span><span class="badge">JUnit</span>
+          <span class="badge">Java</span><span class="badge">Spring Boot</span><span class="badge">Spring Security</span><span class="badge">JWT</span><span class="badge">Docker</span><span class="badge">Swagger</span>
         </div>
       </div>
       <div class="project-card">
@@ -565,6 +615,17 @@
         <div class="project-tags">
           <span class="badge">C++</span><span class="badge">Java</span><span class="badge">PostgreSQL</span>
         </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Phone Directory</h3>
+          <span class="project-org">Personal Project</span>
+        </div>
+        <p class="project-desc">A C++ contact management system built on doubly linked lists — add, update, delete, and search contacts by name, number, or email, with lexicographic sorting and safe reordering after deletions.</p>
+        <div class="project-tags">
+          <span class="badge">C++</span><span class="badge">Data Structures</span><span class="badge">Linked Lists</span>
+        </div>
+        <a class="project-link" href="https://github.com/itsyadavRajkumar/Phone-Directory" target="_blank" rel="noopener">View code ↗</a>
       </div>
     </div>
   </section>
@@ -614,10 +675,52 @@
     </div>
   </section>
 
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="num">05</span>CERTIFICATIONS</div>
+      <h2>Verified, not just claimed</h2>
+    </div>
+    <div class="star-badges reveal">
+      <div class="star-badge">
+        <div class="stars">★★★★★</div>
+        <div class="star-label">Problem Solving</div>
+        <div class="star-platform">HACKERRANK</div>
+      </div>
+      <div class="star-badge">
+        <div class="stars">★★★★★</div>
+        <div class="star-label">C++</div>
+        <div class="star-platform">HACKERRANK</div>
+      </div>
+    </div>
+    <div class="cert-row reveal">
+      <a class="cert-card" href="https://media.geeksforgeeks.org/courses/certificates/09ba4418a7d1383ae92ce68cb792ec1f.pdf" target="_blank" rel="noopener">
+        <div class="cert-text"><span class="cert-platform">GEEKSFORGEEKS</span><span class="cert-title">C++</span></div>
+        <span class="cert-arrow">↗</span>
+      </a>
+      <a class="cert-card" href="https://www.hackerrank.com/certificates/84c18728d7c1" target="_blank" rel="noopener">
+        <div class="cert-text"><span class="cert-platform">HACKERRANK</span><span class="cert-title">SQL (Basic)</span></div>
+        <span class="cert-arrow">↗</span>
+      </a>
+      <a class="cert-card" href="https://www.hackerrank.com/certificates/f1a1e1fbdc04" target="_blank" rel="noopener">
+        <div class="cert-text"><span class="cert-platform">HACKERRANK</span><span class="cert-title">Java (Basic)</span></div>
+        <span class="cert-arrow">↗</span>
+      </a>
+      <a class="cert-card" href="https://www.hackerrank.com/certificates/e10270ae08bb" target="_blank" rel="noopener">
+        <div class="cert-text"><span class="cert-platform">HACKERRANK</span><span class="cert-title">Problem Solving</span></div>
+        <span class="cert-arrow">↗</span>
+      </a>
+      <a class="cert-card" href="https://www.codechef.com/certificates/public/55601a0" target="_blank" rel="noopener">
+        <div class="cert-text"><span class="cert-platform">CODECHEF</span><span class="cert-title">SnackDown 2021</span></div>
+        <span class="cert-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
   <!-- ACHIEVEMENTS -->
   <section id="achievements">
     <div class="section-head reveal">
-      <div class="section-tag"><span class="num">05</span>ACHIEVEMENTS</div>
+      <div class="section-tag"><span class="num">06</span>ACHIEVEMENTS</div>
       <h2>Numbers that don't need a resume bullet</h2>
     </div>
     <div class="stat-grid reveal">
@@ -639,10 +742,15 @@
   <!-- PROFILES -->
   <section id="profiles">
     <div class="section-head reveal">
-      <div class="section-tag"><span class="num">06</span>PROFILES</div>
+      <div class="section-tag"><span class="num">07</span>PROFILES</div>
       <h2>Where the practice happens</h2>
     </div>
     <div class="profile-grid reveal">
+      <a class="profile-card" href="https://www.linkedin.com/in/itsrajkumar/" target="_blank" rel="noopener">
+        <div class="profile-head"><span class="profile-platform">LINKEDIN</span><span class="profile-arrow">↗</span></div>
+        <div class="profile-handle">in/itsrajkumar</div>
+        <div class="profile-summary">Full career history and the fastest way to connect directly for a conversation.</div>
+      </a>
       <a class="profile-card" href="https://leetcode.com/u/NitForge/" target="_blank" rel="noopener">
         <div class="profile-head"><span class="profile-platform">LEETCODE</span><span class="profile-arrow">↗</span></div>
         <div class="profile-handle">@NitForge</div>
@@ -664,7 +772,7 @@
   <!-- EDUCATION -->
   <section id="education">
     <div class="section-head reveal">
-      <div class="section-tag"><span class="num">07</span>EDUCATION</div>
+      <div class="section-tag"><span class="num">08</span>EDUCATION</div>
       <h2>Where the fundamentals came from</h2>
     </div>
     <div class="info-card reveal">
@@ -673,6 +781,7 @@
           <div class="school">National Institute of Technology (NIT), Jamshedpur</div>
           <div class="deg">Master of Computer Applications, Computer Science &amp; Engineering</div>
           <div class="edu-detail">Relevant coursework: Data Structures &amp; Algorithms, DBMS, Operating Systems, OOP. Admitted via the NIT MCA Common Entrance Test — All India Rank 582.</div>
+          <div class="edu-detail">Also served as <b>Problem Setter (DSA &amp; Competitive Programming)</b> for the Society of Computer Applications, Jan–Dec 2022 — designed contest problems and ran 10+ workshops that helped lift junior participation by an estimated 80%.</div>
         </div>
         <div class="dates">Jul 2020 — Jun 2023</div>
       </div>
@@ -691,7 +800,24 @@
   <section id="contact">
     <div class="contact-card reveal">
       <h2>Let's build something reliable.</h2>
-      <p>Open to backend and full-stack roles where API design and data modeling actually matter. Reach out directly — no forms, no recruiters-in-the-loop.</p>
+      <p>Open to backend and full-stack roles where API design and data modeling actually matter. Send a message directly below, or reach out through any channel underneath.</p>
+
+      <form id="contactForm" class="contact-form">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+        </div>
+        <input type="text" name="company" placeholder="Company (optional)">
+        <textarea name="message" placeholder="What are you reaching out about?" rows="4" required></textarea>
+        <input type="hidden" name="_subject" value="New message from the portfolio contact form">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off">
+        <button type="submit" class="btn btn-primary" id="contactSubmitBtn">Send message</button>
+      </form>
+
+      <div class="contact-divider">or reach out directly</div>
+
       <div class="contact-links">
         <a class="btn btn-primary" href="https://raw.githubusercontent.com/itsyadavRajkumar/resume/main/Rajkumar%20Yadav%20-%20Backend_Developer.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a>
         <button class="btn btn-primary" id="copyEmailBtn">Copy email</button>
@@ -701,6 +827,7 @@
         <a class="btn btn-ghost" href="tel:+918528151048">+91 8528151048</a>
       </div>
       <div class="contact-links">
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/itsrajkumar/" target="_blank" rel="noopener">linkedin.com/in/itsrajkumar</a>
         <a class="btn btn-ghost" href="https://github.com/itsyadavRajkumar" target="_blank" rel="noopener">github.com/itsyadavRajkumar</a>
         <a class="btn btn-ghost" href="https://leetcode.com/u/NitForge/" target="_blank" rel="noopener">leetcode.com/u/NitForge</a>
         <a class="btn btn-ghost" href="https://www.geeksforgeeks.org/profile/itsrajkumar" target="_blank" rel="noopener">geeksforgeeks.org/itsrajkumar</a>
@@ -805,18 +932,55 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
 
+  // Toast helper — reused by copy-email and the contact form
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(message){
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+
   // Copy email
   const copyBtn = document.getElementById('copyEmailBtn');
-  const toast = document.getElementById('toast');
   copyBtn.addEventListener('click', async () => {
     try{
       await navigator.clipboard.writeText('rajkumaryadav.nitjsr@gmail.com');
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
+      showToast('Email copied to clipboard');
     }catch(e){
       window.location.href = 'mailto:rajkumaryadav.nitjsr@gmail.com';
     }
   });
+
+  // Contact form — relays through FormSubmit (formsubmit.co), no backend required.
+  // First-ever submission triggers a one-time confirmation email that must be
+  // clicked to activate delivery; every submission after that arrives normally.
+  const contactForm = document.getElementById('contactForm');
+  const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const originalLabel = contactSubmitBtn.textContent;
+      contactSubmitBtn.textContent = 'Sending…';
+      contactSubmitBtn.disabled = true;
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/rajkumaryadav.nitjsr@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(contactForm)
+        });
+        if (!response.ok) throw new Error('Request failed');
+        showToast('Message sent — thanks for reaching out!');
+        contactForm.reset();
+      } catch (err) {
+        showToast('Something went wrong — please email directly instead');
+      } finally {
+        contactSubmitBtn.textContent = originalLabel;
+        contactSubmitBtn.disabled = false;
+      }
+    });
+  }
 </script>
 
 </body>
