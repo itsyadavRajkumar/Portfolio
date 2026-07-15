@@ -802,7 +802,7 @@
       <h2>Let's build something reliable.</h2>
       <p>Open to backend and full-stack roles where API design and data modeling actually matter. Send a message directly below, or reach out through any channel underneath.</p>
 
-      <form id="contactForm" class="contact-form">
+      <form id="contactForm" class="contact-form" action="https://formsubmit.co/rajkumaryadav.nitjsr@gmail.com" method="POST">
         <div class="form-row">
           <input type="text" name="name" placeholder="Your name" required>
           <input type="email" name="email" placeholder="Your email" required>
@@ -954,8 +954,12 @@
   });
 
   // Contact form — relays through FormSubmit (formsubmit.co), no backend required.
-  // First-ever submission triggers a one-time confirmation email that must be
-  // clicked to activate delivery; every submission after that arrives normally.
+  // First-ever submission must complete a one-time confirmation handshake with
+  // FormSubmit, which their AJAX endpoint doesn't support — so on the very first
+  // use (or if AJAX is ever blocked for any reason) this falls back to a plain
+  // native form submit, which navigates to FormSubmit directly and triggers the
+  // one-time confirmation email. Click that once, and every submission after
+  // goes through the smooth in-page AJAX path with no redirect at all.
   const contactForm = document.getElementById('contactForm');
   const contactSubmitBtn = document.getElementById('contactSubmitBtn');
   if (contactForm) {
@@ -973,11 +977,13 @@
         if (!response.ok) throw new Error('Request failed');
         showToast('Message sent — thanks for reaching out!');
         contactForm.reset();
-      } catch (err) {
-        showToast('Something went wrong — please email directly instead');
-      } finally {
         contactSubmitBtn.textContent = originalLabel;
         contactSubmitBtn.disabled = false;
+      } catch (err) {
+        // AJAX path failed (most likely: this address hasn't completed FormSubmit's
+        // one-time confirmation yet) — fall back to a real page submission instead.
+        showToast('Sending the old-fashioned way…');
+        setTimeout(() => { contactForm.submit(); }, 500);
       }
     });
   }
